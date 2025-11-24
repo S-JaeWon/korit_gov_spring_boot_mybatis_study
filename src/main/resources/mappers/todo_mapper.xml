@@ -12,54 +12,46 @@
         <result property="updateDt" column="update_dt" />
     </resultMap>
 
-    <insert id="addBoard" useGeneratedKeys="true" keyProperty="boardId">
+    <select id="getTitle" resultMap="TodoResultMap">
+        select
+            title
+        from
+            todo_tb
+        where
+            title = #{title}
+    </select>
+
+    <insert id="addTodo" useGeneratedKeys="true" keyProperty="todoId">
         insert into
-        board_tb
+            todo_tb(todo_id, title, content, create_dt, update_dt)
         values
-        (0, #{title}, #{content}, now(), null);
+            (0, #{title}, #{content}, now(), null);
     </insert>
 
-    <select id="searchByTitle" resultMap="BoardResultMap">
+    <select id="getTodoAll" resultMap="TodoResultMap">
         select
-        *
+            todo_id, title, content, create_dt, update_dt
         from
-        board_tb
+            todo_tb
+    </select>
+
+    <select id="getTodo" resultMap="TodoResultMap">
+        select
+            todo_id, title, content, create_dt, update_dt
+        from
+            todo_tb
         where
-        title = #{title};
+            todo_id = #{todoId}
     </select>
 
-    <select id="getBoardAll" resultMap="BoardResultMap">
-        select
-        *
-        from
-        board_tb;
-    </select>
-
-    <select id="getBoard" resultMap="BoardResultMap">
-        select
-        *
-        from
-        board_tb
-        where
-        board_id = #{boardId};
-    </select>
-
-    <update id="editBoard"> <!-- 조회 일때만 resultMap -->
+    <update id="editTodo">
         update
-        board_tb
+            todo_tb
         set
-        title = #{title},
-        content = #{content},
-        update_dt = now()
+            title = #{title},
+            content = #{content},
+            update_dt = now()
         where
-        board_id = #{boardId}
+            todo_id = #{todoId}
     </update>
-
-    <delete id="deleteBoard">
-        delete from
-        board_tb
-        where
-        board_id = #{boardId}
-    </delete>
-
 </mapper>
