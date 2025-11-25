@@ -1,4 +1,4 @@
-package com.korit.TODO.entity;
+package com.korit.mybatis_study.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

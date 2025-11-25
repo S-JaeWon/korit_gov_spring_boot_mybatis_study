@@ -1,15 +1,14 @@
-package com.korit.TODO.service;
+package com.korit.mybatis_study.service;
 
-import com.korit.TODO.dto.Request.AddTodoReqDto;
-import com.korit.TODO.dto.Request.EditTodoReqDto;
-import com.korit.TODO.entity.Todo;
-import com.korit.TODO.repository.TodoRepository;
-import com.korit.mybatis_study.dto.Request.EditBoardReqDto;
+import com.korit.mybatis_study.dto.Request.AddTodoReqDto;
+
+import com.korit.mybatis_study.dto.Request.EditTodoReqDto;
+import com.korit.mybatis_study.entity.Todo;
+import com.korit.mybatis_study.repository.TodoRepository;
 import com.korit.mybatis_study.dto.Response.ApiRespDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -94,5 +93,28 @@ public class TodoService {
                 .build();
     }
 
+    public ApiRespDto<?> deleteTodo(Integer todoId) {
+        Optional<Todo> todo = todoRepository.getTodo(todoId);
 
+        if (todo.isEmpty()) {
+            return ApiRespDto.builder()
+                    .status("failed")
+                    .message("해당 todo가 존재 하지 않습니다.")
+                    .build();
+        }
+
+        int result = todoRepository.deleteTodo(todo.get().getTodoId());
+
+        if (result != 1) {
+            return ApiRespDto.builder()
+                    .status("failed")
+                    .message("todo 삭세 중 오류 발생")
+                    .build();
+        }
+
+        return ApiRespDto.builder()
+                .status("success")
+                .message("todo 삭제 완료")
+                .build();
+    }
 }

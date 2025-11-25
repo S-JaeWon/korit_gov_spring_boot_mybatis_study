@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.korit.TODO.mapper.TodoMapper">
+<mapper namespace="com.korit.mybatis_study.mapper.TodoMapper">
 
-    <resultMap id="TodoResultMap" type="com.korit.TODO.entity.Todo">
+    <resultMap id="TodoResultMap" type="com.korit.mybatis_study.entity.Todo">
         <id property="todoId" column="todo_id" />
         <result property="title" column="title" />
         <result property="content" column="content" />
@@ -54,4 +54,11 @@
         where
             todo_id = #{todoId}
     </update>
+
+    <delete id="deleteTodo">
+        delete from
+            todo_tb
+        where
+            todo_id = #{todoId}
+    </delete>
 </mapper>

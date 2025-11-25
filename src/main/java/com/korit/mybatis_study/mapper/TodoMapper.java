@@ -1,6 +1,6 @@
-package com.korit.TODO.mapper;
+package com.korit.mybatis_study.mapper;
 
-import com.korit.TODO.entity.Todo;
+import com.korit.mybatis_study.entity.Todo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

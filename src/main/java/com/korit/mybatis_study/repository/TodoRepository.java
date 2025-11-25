@@ -1,7 +1,7 @@
-package com.korit.TODO.repository;
+package com.korit.mybatis_study.repository;
 
-import com.korit.TODO.entity.Todo;
-import com.korit.TODO.mapper.TodoMapper;
+import com.korit.mybatis_study.entity.Todo;
+import com.korit.mybatis_study.mapper.TodoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
